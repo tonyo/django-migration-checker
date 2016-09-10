@@ -7,7 +7,8 @@ def extract_dependencies(file_path):
     """
     Parse the file contents and return the list of dependencies.
     """
-    file_contents = open(file_path).read()
+    with open(file_path) as fh:
+        file_contents = fh.read()
     match = re.search(r"""^\s+dependencies [^\[]+
                           \[
                           ([^\]]*)
@@ -34,11 +35,13 @@ def extract_dependencies(file_path):
 def get_app_conflicts(app, migration_files):
     # Detect leaves
     leaves = set(os.path.basename(file)[:-3] for file in migration_files)
+    if not leaves:
+        return []
     for migration in migration_files:
-        for dep in extract_dependencies(migration):
-            if dep[0] == app and dep[1] in leaves:
-                leaves.remove(dep)
-    # assert len(leaves) > 0
+        for dep_app, dep_migration in extract_dependencies(migration):
+            if dep_app == app and dep_migration in leaves:
+                leaves.remove(dep_migration)
+    assert len(leaves) > 0
     if len(leaves) > 1:
         return sorted(leaves)
     else:
