@@ -19,7 +19,7 @@ test_requirements = [
 
 setup(
     name='django_migration_checker',
-    version='0.1.0',
+    version='0.2.0',
     description="Python Boilerplate contains all the boilerplate you need to create a Python package.",
     long_description=readme + '\n\n' + history,
     author="Anton Ovchinnikov",
