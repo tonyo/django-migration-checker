@@ -31,54 +31,48 @@ def extract_dependencies(file_path):
     return [(match.group(1), match.group(2)) for match in match_iter]
 
 
-def find_apps_with_migrations(app_dir):
+def get_app_conflicts(app, migration_files):
+    # Detect leaves
+    leaves = set(os.path.basename(file)[:-3] for file in migration_files)
+    for migration in migration_files:
+        for dep in extract_dependencies(migration):
+            if dep[0] == app and dep[1] in leaves:
+                leaves.remove(dep)
+    # assert len(leaves) > 0
+    if len(leaves) > 1:
+        return sorted(leaves)
+    else:
+        return []
+
+
+def get_conflicts(app_dir=None):
     """
     Return a list of tuples, where each tuple has three elements:
     - app
     - migration file (no path)
     - full path to migration file
     """
+    if app_dir is None:
+        app_dir = os.getcwd()
+
     res = []
-    for entry in os.listdir(app_dir):
-        entry_path = os.path.join(app_dir, entry)
+    for app in os.listdir(app_dir):
+        entry_path = os.path.join(app_dir, app)
         # Skip if not a directory or there's no 'migration' dir
         if (not os.path.isdir(entry_path) or
                 'migrations' not in os.listdir(entry_path)):
             continue
 
         migrations_dir = os.path.join(entry_path, 'migrations')
+        migration_file_list = []
         for migration_file in os.listdir(migrations_dir):
             # Skip __init__.py and non-Python files
             if (migration_file.startswith('__') or
                     not migration_file.endswith('.py')):
                 continue
             full_path = os.path.join(migrations_dir, migration_file)
-            res.append(((entry, migration_file[:-3]), full_path))
+            migration_file_list.append(full_path)
+        app_conflicts = get_app_conflicts(app, migration_file_list)
+        if app_conflicts:
+            res.append((app, app_conflicts))
     return res
-
-
-def get_conflicts(app_dir):
-    # Check that for every app there's at most one leaf node
-    migrations_list = find_apps_with_migrations(app_dir)
-    leaves = {x[0] for x in migrations_list}
-
-    # Detect leaves
-    for _, migration_file in migrations_list:
-        dep_list = extract_dependencies(migration_file)
-        for dep in dep_list:
-            if dep in leaves:
-                leaves.remove(dep)
-
-    # Check conflicts
-    app_to_leaves = {}
-    for app, migration in leaves:
-        app_to_leaves.setdefault(app, []).append(migration)
-
-    conflicts = list(filter(lambda t: len(t[1]) > 1, app_to_leaves.items()))
-
-    # Sort output
-    sorted_conflicts = map(
-        lambda app_conflicts: (app_conflicts[0], sorted(app_conflicts[1])),
-        conflicts
-    )
-    return list(sorted_conflicts)
