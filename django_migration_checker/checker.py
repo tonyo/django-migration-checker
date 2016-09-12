@@ -50,10 +50,9 @@ def get_app_conflicts(app, migration_files):
 
 def get_conflicts(app_dir=None):
     """
-    Return a list of tuples, where each tuple has three elements:
-    - app
-    - migration file (no path)
-    - full path to migration file
+    Return a list of tuples, where each tuple has two elements:
+    - app name
+    - list of conflicting migration names
     """
     if app_dir is None:
         app_dir = os.getcwd()
@@ -70,7 +69,7 @@ def get_conflicts(app_dir=None):
         migration_file_list = []
         for migration_file in os.listdir(migrations_dir):
             # Skip __init__.py and non-Python files
-            if (migration_file.startswith('__') or
+            if (os.path.basename(migration_file).startswith('__') or
                     not migration_file.endswith('.py')):
                 continue
             full_path = os.path.join(migrations_dir, migration_file)

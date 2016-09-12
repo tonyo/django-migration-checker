@@ -33,5 +33,11 @@ class TestDjangoMigrationChecker(unittest.TestCase):
         assert ([('llamas', ['0001_initial', '0002_new_one'])] ==
                 get_conflicts(test_dir))
 
+    def test_no_app_dir(self):
+        test_dir = os.path.join(TEST_DATA_PATH, '02_basic_conflicts')
+        os.chdir(test_dir)
+        assert ([('alpacas', ['0001_initial', '0002_new'])] ==
+                get_conflicts())
+
 if __name__ == '__main__':
     sys.exit(unittest.main())
