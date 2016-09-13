@@ -52,14 +52,17 @@ lint: ## check style with flake8
 
 test: ## run tests quickly with the default Python
 	py.test
-	
+
 
 test-all: ## run tests on every Python version with tox
 	tox
 
+test-parallel: ## run test on every Python version in parallel
+	detox
+
 coverage: ## check code coverage quickly with the default Python
 	coverage run --source django_migration_checker setup.py test
-	
+
 		coverage report -m
 		coverage html
 		$(BROWSER) htmlcov/index.html
