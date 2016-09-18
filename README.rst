@@ -1,5 +1,5 @@
 ===============================
-Static Django Migration Conflict Checker
+django-migration-checker
 ===============================
 
 
@@ -9,21 +9,26 @@ Static Django Migration Conflict Checker
 .. image:: https://img.shields.io/travis/rev112/django_migration_checker.svg
         :target: https://travis-ci.org/rev112/django_migration_checker
 
-.. image:: https://readthedocs.org/projects/django-migration-checker/badge/?version=latest
-        :target: https://django-migration-checker.readthedocs.io/en/latest/?badge=latest
-        :alt: Documentation Status
 
-.. image:: https://pyup.io/repos/github/rev112/django_migration_checker/shield.svg
-     :target: https://pyup.io/repos/github/rev112/django_migration_checker/
-     :alt: Updates
+The package allows to detect migration conflicts in Django application via static code analysis.
 
+Example:
 
-Python Boilerplate contains all the boilerplate you need to create a Python package.
-
+```
+>>> from django_migration_checker import get_conflicts
+>>> get_conflicts(app_dir='./django-project/apps')
+[('accounts', ['0001_initial', '0002_new_migration'])]
+```
 
 * Free software: MIT license
-* Documentation: https://django-migration-checker.readthedocs.io.
 
+
+Installation
+------------
+
+```
+pip install django-migration-checker
+```
 
 Features
 --------

@@ -24,7 +24,7 @@ setup(
     long_description=readme + '\n\n' + history,
     author="Anton Ovchinnikov",
     author_email='anton.ovchi2nikov@gmail.com',
-    url='https://github.com/rev112/django_migration_checker',
+    url='https://github.com/rev112/django-migration-checker',
     packages=[
         'django_migration_checker',
     ],

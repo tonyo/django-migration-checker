@@ -3,7 +3,7 @@ import os
 import sys
 import unittest
 
-from django_migration_checker.checker import get_conflicts
+from django_migration_checker import get_conflicts
 
 SCRIPT_PATH = os.path.dirname(os.path.realpath(__file__))
 TEST_DATA_PATH = os.path.join(SCRIPT_PATH, 'test_data')
