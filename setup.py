@@ -18,7 +18,7 @@ test_requirements = [
 ]
 
 setup(
-    name='django_migration_checker',
+    name='django-migration-checker',
     version='0.2.3',
     description="Static migration conflict checker for Django",
     long_description=readme + '\n\n' + history,
