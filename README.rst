@@ -9,6 +9,9 @@ django-migration-checker
 .. image:: https://img.shields.io/travis/rev112/django-migration-checker.svg
         :target: https://travis-ci.org/rev112/django-migration-checker
 
+.. image:: https://coveralls.io/repos/github/rev112/django-migration-checker/badge.svg?branch=master
+        :target: https://coveralls.io/github/rev112/django-migration-checker?branch=master
+
 
 The package allows to detect migration conflicts in Django application via static code analysis. In other words, it doesn't run or import any of your code, but finds and parses Django migration files.
 
