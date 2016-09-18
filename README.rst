@@ -10,15 +10,15 @@ django-migration-checker
         :target: https://travis-ci.org/rev112/django-migration-checker
 
 
-The package allows to detect migration conflicts in Django application via static code analysis.
+The package allows to detect migration conflicts in Django application via static code analysis. In other words, it doesn't run or import any of your code, but finds and parses Django migration files.
 
-Example:
+**Example:**
 
-```
->>> from django_migration_checker import get_conflicts
->>> get_conflicts(app_dir='./django-project/apps')
-[('accounts', ['0001_initial', '0002_new_migration'])]
-```
+::
+
+  >>> from django_migration_checker import get_conflicts
+  >>> get_conflicts(app_dir='./django-project/apps')
+  [('accounts', ['0001_initial', '0002_new_migration'])]
 
 * Free software: MIT license
 
@@ -26,9 +26,9 @@ Example:
 Installation
 ------------
 
-```
-pip install django-migration-checker
-```
+::
+
+  pip install django-migration-checker
 
 Features
 --------
@@ -42,4 +42,3 @@ This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypack
 
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
-

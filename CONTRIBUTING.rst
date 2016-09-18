@@ -38,8 +38,8 @@ and "help wanted" is open to whoever wants to implement it.
 Write Documentation
 ~~~~~~~~~~~~~~~~~~~
 
-Static Django Migration Conflict Checker could always use more documentation, whether as part of the
-official Static Django Migration Conflict Checker docs, in docstrings, or even on the web in blog posts,
+django-migration-checker could always use more documentation, whether as part of the
+official django-migration-checker docs, in docstrings, or even on the web in blog posts,
 articles, and such.
 
 Submit Feedback

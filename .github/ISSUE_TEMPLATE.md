@@ -1,4 +1,4 @@
-* Static Django Migration Conflict Checker version:
+* django-migration-checker version:
 * Python version:
 * Operating System:
 
