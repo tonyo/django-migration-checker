@@ -33,10 +33,27 @@ Installation
 
   pip install django-migration-checker
 
-Features
---------
+Why?
+----
 
-* TODO
+* Fast
+* No up-to-date environment needed
+* No dependencies
+
+Command-line tool
+-----------------
+
+You can use the command-line script ``django-find-conflicts`` to detect migration conflicts from your console.
+
+Here's how it looks like:
+
+::
+
+  $ django-find-conflicts ./django-project/apps
+  [('accounts', ['0001_initial', '0002_new_migration'])]
+
+  $ django-find-conflicts ./other-project/apps
+  No conflicts detected.
 
 Credits
 ---------

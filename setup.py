@@ -1,6 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 from setuptools import setup
 
 with open('README.rst') as readme_file:
@@ -10,11 +8,9 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
 requirements = [
-    # TODO: put package requirements here
 ]
 
 test_requirements = [
-    # TODO: put package test requirements here
 ]
 
 setup(
@@ -30,6 +26,11 @@ setup(
     ],
     package_dir={'django_migration_checker':
                  'django_migration_checker'},
+    entry_points={
+        'console_scripts': [
+            'django-find-conflicts=django_migration_checker.cli.find_conflicts:main',
+        ],
+    },
     include_package_data=True,
     install_requires=requirements,
     license="MIT license",

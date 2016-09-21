@@ -39,5 +39,6 @@ class TestDjangoMigrationChecker(unittest.TestCase):
         assert ([('alpacas', ['0001_initial', '0002_new'])] ==
                 get_conflicts())
 
+
 if __name__ == '__main__':
     sys.exit(unittest.main())
