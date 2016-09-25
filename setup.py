@@ -37,11 +37,11 @@ setup(
     zip_safe=False,
     keywords='django_migration_checker',
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
+        'Framework :: Django',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Natural Language :: English',
-        "Programming Language :: Python :: 2",
+        'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',

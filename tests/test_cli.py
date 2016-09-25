@@ -21,8 +21,7 @@ class TestFindMigrationsCliChecker(unittest.TestCase):
         """
         User passes no args, should fail with SystemExit
         """
-        with self.assertRaises(SystemExit):
-            self.parser.parse_args([])
+        self.assertRaises(SystemExit, self.parser.parse_args, [])
 
     def test_app_dir_argument(self):
         """
