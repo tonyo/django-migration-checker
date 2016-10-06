@@ -23,9 +23,8 @@ setup(
     url='https://github.com/rev112/django-migration-checker',
     packages=[
         'django_migration_checker',
+        'django_migration_checker.cli',
     ],
-    package_dir={'django_migration_checker':
-                 'django_migration_checker'},
     entry_points={
         'console_scripts': [
             'django-find-conflicts=django_migration_checker.cli.find_conflicts:main',
