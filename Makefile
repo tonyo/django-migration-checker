@@ -60,8 +60,10 @@ test-all: ## run tests on every Python version with tox
 test-parallel: ## run test on every Python version in parallel
 	detox
 
-coverage: ## check code coverage quickly with the default Python
+test-coverage: ## run test with coverage
 	coverage run --source django_migration_checker setup.py test
+
+coverage: test-coverage ## check code coverage quickly with the default Python
 	coverage report -m
 	coverage html
 	$(BROWSER) htmlcov/index.html
