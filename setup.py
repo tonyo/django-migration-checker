@@ -1,17 +1,34 @@
 #!/usr/bin/env python
 from setuptools import setup
 
+
+def parse_requirements(requirements, ignore=('setuptools',)):
+    """
+    Read dependencies from requirements file (with version numbers if any)
+    Notes:
+        - this implementation does not support requirements files with extra
+          requirements
+        - this implementation has been taken from TailorDev/Watson's setup file
+    """
+    with open(requirements) as f:
+        packages = set()
+        for line in f:
+            line = line.strip()
+            if line.startswith(('#', '-r', '--')):
+                continue
+            if '#egg=' in line:
+                line = line.split('#egg=')[1]
+            pkg = line.strip()
+            if pkg not in ignore:
+                packages.add(pkg)
+        return list(packages)
+
+
 with open('README.rst') as readme_file:
     readme = readme_file.read()
 
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
-
-requirements = [
-]
-
-test_requirements = [
-]
 
 setup(
     name='django-migration-checker',
@@ -20,7 +37,7 @@ setup(
     long_description=readme + '\n\n' + history,
     author="Anton Ovchinnikov",
     author_email='anton.ovchi2nikov@gmail.com',
-    url='https://github.com/rev112/django-migration-checker',
+    url='https://github.com/tonyo/django-migration-checker',
     packages=[
         'django_migration_checker',
         'django_migration_checker.cli',
@@ -31,7 +48,6 @@ setup(
         ],
     },
     include_package_data=True,
-    install_requires=requirements,
     license="MIT license",
     zip_safe=False,
     keywords='django_migration_checker',
@@ -49,5 +65,7 @@ setup(
         'Programming Language :: Python :: 3.5',
     ],
     test_suite='tests',
-    tests_require=test_requirements
+    install_requires=[],
+    tests_require=parse_requirements('requirements_dev.txt'),
+    setup_requires=parse_requirements('requirements_dev.txt')
 )

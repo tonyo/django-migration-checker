@@ -62,10 +62,9 @@ test-parallel: ## run test on every Python version in parallel
 
 coverage: ## check code coverage quickly with the default Python
 	coverage run --source django_migration_checker setup.py test
-
-		coverage report -m
-		coverage html
-		$(BROWSER) htmlcov/index.html
+	coverage report -m
+	coverage html
+	$(BROWSER) htmlcov/index.html
 
 docs: ## generate Sphinx HTML documentation, including API docs
 	rm -f docs/django_migration_checker.rst
