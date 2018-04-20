@@ -32,7 +32,7 @@ with open('HISTORY.rst') as history_file:
 
 setup(
     name='django-migration-checker',
-    version='0.4.1',
+    version='0.4.2',
     description="Static migration conflict checker for Django",
     long_description=readme + '\n\n' + history,
     author="Anton Ovchinnikov",
