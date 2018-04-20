@@ -10,9 +10,9 @@ python:
 
 install:
   - pip install -r requirements_dev.txt
-  - pip install .
 
-script: make test
+script: 
+  - make test-coverage
 
 after_success:
   - coveralls
