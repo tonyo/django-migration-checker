@@ -3,33 +3,35 @@ import os
 import re
 
 
+def extract_list(name, content):
+    match = re.search(
+        r"""^\s+{} [^\[]+\[([^\]]*)\]""".format(name),
+        content,
+        flags=re.VERBOSE | re.MULTILINE
+    )
+    if not match:
+        return []
+
+    raw_list = match.group(1).strip()
+    if not raw_list:
+        return []
+
+    match_iter = re.finditer(
+        r"""\('([^']+)',\s*'([^_][^']+)'\)""",
+        raw_list,
+        flags=re.VERBOSE
+    )
+    return [(match.group(1), match.group(2)) for match in match_iter]
+
+
 def extract_dependencies(file_path):
     """
     Parse the file contents and return the list of dependencies.
     """
     with open(file_path) as fh:
-        file_contents = fh.read()
-    match = re.search(r"""^\s+dependencies [^\[]+
-                          \[
-                          ([^\]]*)
-                          \]""",
-                      file_contents,
-                      flags=re.VERBOSE | re.MULTILINE)
-    if not match:
-        return []
+        content = fh.read()
 
-    deps = match.group(1).strip()
-    if not deps:
-        return []
-
-    match_iter = re.finditer(r"""\(
-                                 '([^']+)'
-                                 ,\s*
-                                 '([^_][^']+)'
-                                 \)""",
-                             deps,
-                             flags=re.VERBOSE)
-    return [(match.group(1), match.group(2)) for match in match_iter]
+    return extract_list('replaces', content) + extract_list('dependencies', content)
 
 
 def get_app_conflicts(app, migration_files):
