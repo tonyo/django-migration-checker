@@ -39,6 +39,20 @@ class TestDjangoMigrationChecker(unittest.TestCase):
         assert ([('alpacas', ['0001_initial', '0002_new'])] ==
                 get_conflicts())
 
+    def test_squashed_no_conflict(self):
+        test_dir = os.path.join(TEST_DATA_PATH, '04_squashed_no_conflict')
+        assert [] == get_conflicts(test_dir)
+
+    def test_squashed_basic_conflict(self):
+        test_dir = os.path.join(TEST_DATA_PATH, '05_squashed_basic_conflict')
+        result = [
+            (
+                'llamas',
+                ['0001_squashed_0002_auto_20190509_1610', '0002_new_one']
+            )
+        ]
+        assert result == get_conflicts(test_dir)
+
 
 if __name__ == '__main__':
     sys.exit(unittest.main())
