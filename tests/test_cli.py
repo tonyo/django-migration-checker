@@ -36,7 +36,7 @@ class TestFindMigrationsCliChecker(unittest.TestCase):
     def test_cli_passes_args(self, m_parse_args, m_get_conflicts):
         m_parse_args.return_value = self.valid_parsed_args
 
-        find_conflicts.main()
+        self.assertRaises(SystemExit, find_conflicts.main)
 
         m_get_conflicts.assert_called_with(self.apps_dir)
 

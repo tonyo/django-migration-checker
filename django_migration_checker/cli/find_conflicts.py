@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import sys
 import argparse
 
 from django_migration_checker import get_conflicts
@@ -19,5 +20,6 @@ def main():
     conflicts = get_conflicts(args.apps_dir)
     if conflicts:
         print(conflicts)
+        sys.exit(1)
     else:
         print('No conflicts detected.')
