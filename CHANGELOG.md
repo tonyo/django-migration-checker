@@ -2,7 +2,7 @@
 
 ## [0.6.0] - 2020-12-05
 
-* Exit with code 1 when conflicts are found (#7)
+* Exit with code 1 when conflicts are found ([#7](https://github.com/tonyo/django-migration-checker/pull/7))
 
 
 ## [0.1.0] - 2016-09-09
