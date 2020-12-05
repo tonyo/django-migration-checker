@@ -27,7 +27,7 @@ def parse_requirements(requirements, ignore=('setuptools',)):
 with open('README.rst') as readme_file:
     readme = readme_file.read()
 
-with open('HISTORY.rst') as history_file:
+with open('CHANGELOG.md') as history_file:
     history = history_file.read()
 
 setup(
