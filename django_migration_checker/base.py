@@ -17,11 +17,11 @@ def extract_list(name, content):
         return []
 
     match_iter = re.finditer(
-        r"""\('([^']+)',\s*'([^_][^']+)'\)""",
+        r"""\((['"])([^']+)\1,\s*(['"])([^_][^']+)\3\)""",
         raw_list,
         flags=re.VERBOSE
     )
-    return [(match.group(1), match.group(2)) for match in match_iter]
+    return [(match.group(2), match.group(4)) for match in match_iter]
 
 
 def extract_dependencies(file_path):
