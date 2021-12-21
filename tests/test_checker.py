@@ -53,6 +53,9 @@ class TestDjangoMigrationChecker(unittest.TestCase):
         ]
         assert result == get_conflicts(test_dir)
 
+    def test_no_conflicts_double_quotes(self):
+        test_dir = os.path.join(TEST_DATA_PATH, '06_no_conflicts_double_quotes')
+        assert [] == get_conflicts(test_dir)
 
 if __name__ == '__main__':
     sys.exit(unittest.main())
