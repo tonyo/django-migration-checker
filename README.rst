@@ -13,7 +13,7 @@ django-migration-checker
         :target: https://coveralls.io/github/tonyo/django-migration-checker?branch=master
 
 Note: this project is not actively maintained. It's also kind of an ugly hack, and most probably there are better ways to solve the same problem these days. 
--------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 The package allows to detect migration conflicts in Django_ application via static code analysis. In other words, it doesn't run or import any of your code, but finds and parses Django migration files.
 
