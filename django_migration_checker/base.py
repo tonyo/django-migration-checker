@@ -17,7 +17,7 @@ def extract_list(name, content):
         return []
 
     match_iter = re.finditer(
-        r"""\((['"])([^']+)\1,\s*(['"])([^_][^']+)\3\)""",
+        r"""\((['"])([^'"]+)\1,\s*(['"])([^_][^'"]+)\3\)""",
         raw_list,
         flags=re.VERBOSE
     )
