@@ -1,5 +1,10 @@
 # Changelog
 
+
+## [0.7.1] - 2022-07-31
+
+* Fix error on double quote and multiple dependencies ([#11](https://github.com/tonyo/django-migration-checker/pull/11))
+
 ## [0.7.0] - 2021-12-26
 
 * Accept both single and double quotes ([#9](https://github.com/tonyo/django-migration-checker/pull/9))
