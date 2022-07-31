@@ -32,8 +32,8 @@ jobs:
       - name: "Install dependencies"
         run: |
           python -VV
-          pip install pip==20.3.4
-          pip install wheel
+          pip install pip==21.2.4
+          pip install wheel==0.37.0
           python setup.py develop     
 
       # Runs a set of commands using the runners shell
