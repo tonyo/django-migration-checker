@@ -6,4 +6,4 @@ __all__ = ('get_conflicts',)
 
 __author__ = 'Anton Ovchinnikov'
 __email__ = 'anton.ovchi2nikov@gmail.com'
-__version__ = '0.7.0'
+__version__ = '0.7.1'
