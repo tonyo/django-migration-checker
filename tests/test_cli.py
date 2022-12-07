@@ -14,8 +14,8 @@ class TestFindMigrationsCliChecker(unittest.TestCase):
 
     def setUp(self):
         self.parser = create_parser()
-        self.apps_dir = 'apps_dir'
-        self.valid_parsed_args = self.parser.parse_args([self.apps_dir])
+        self.apps_dir_input = 'example_app_dir'
+        self.valid_parsed_args = self.parser.parse_args([self.apps_dir_input])
 
     def test_with_empty_args(self):
         """
@@ -29,7 +29,7 @@ class TestFindMigrationsCliChecker(unittest.TestCase):
         """
         args = self.valid_parsed_args
 
-        assert args.apps_dir == self.apps_dir
+        assert args.apps_dirs == [self.apps_dir_input]
 
     @patch('django_migration_checker.cli.find_conflicts.get_conflicts')
     @patch('argparse.ArgumentParser.parse_args')
@@ -38,7 +38,7 @@ class TestFindMigrationsCliChecker(unittest.TestCase):
 
         self.assertRaises(SystemExit, find_conflicts.main)
 
-        m_get_conflicts.assert_called_with(self.apps_dir)
+        m_get_conflicts.assert_called_with(self.apps_dir_input)
 
 
 if __name__ == '__main__':
