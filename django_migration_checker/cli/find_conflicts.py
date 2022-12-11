@@ -6,9 +6,7 @@ from django_migration_checker import get_conflicts
 
 
 def create_parser():
-    parser = argparse.ArgumentParser(
-        description="Find migration conflicts in Django projects."
-    )
+    parser = argparse.ArgumentParser(description="Find migration conflicts in Django projects.")
     parser.add_argument(
         "apps_dirs",
         metavar="APPS_DIRS",
@@ -25,7 +23,7 @@ def main():
     for dir in args.apps_dirs:
         if len(args.apps_dirs) > 1:
             print(dir + ":")
-            
+
         conflicts = get_conflicts(dir)
         if conflicts:
             print(conflicts)

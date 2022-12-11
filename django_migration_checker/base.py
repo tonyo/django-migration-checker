@@ -7,7 +7,7 @@ def extract_list(name, content):
     match = re.search(
         r"""^\s+{} [^\[]+\[([^\]]*)\]""".format(name),
         content,
-        flags=re.VERBOSE | re.MULTILINE
+        flags=re.VERBOSE | re.MULTILINE,
     )
     if not match:
         return []
@@ -16,11 +16,7 @@ def extract_list(name, content):
     if not raw_list:
         return []
 
-    match_iter = re.finditer(
-        r"""\((['"])([^'"]+)\1,\s*(['"])([^_][^'"]+)\3\)""",
-        raw_list,
-        flags=re.VERBOSE
-    )
+    match_iter = re.finditer(r"""\((['"])([^'"]+)\1,\s*(['"])([^_][^'"]+)\3\)""", raw_list, flags=re.VERBOSE)
     return [(match.group(2), match.group(4)) for match in match_iter]
 
 
@@ -31,7 +27,7 @@ def extract_dependencies(file_path):
     with open(file_path) as fh:
         content = fh.read()
 
-    return extract_list('replaces', content) + extract_list('dependencies', content)
+    return extract_list("replaces", content) + extract_list("dependencies", content)
 
 
 def get_app_conflicts(app, migration_files):
@@ -63,16 +59,14 @@ def get_conflicts(app_dir=None):
     for app in os.listdir(app_dir):
         entry_path = os.path.join(app_dir, app)
         # Skip if not a directory or there's no 'migration' dir
-        if (not os.path.isdir(entry_path) or
-                'migrations' not in os.listdir(entry_path)):
+        if not os.path.isdir(entry_path) or "migrations" not in os.listdir(entry_path):
             continue
 
-        migrations_dir = os.path.join(entry_path, 'migrations')
+        migrations_dir = os.path.join(entry_path, "migrations")
         migration_file_list = []
         for migration_file in os.listdir(migrations_dir):
             # Skip __init__.py and non-Python files
-            if (os.path.basename(migration_file).startswith('__') or
-                    not migration_file.endswith('.py')):
+            if os.path.basename(migration_file).startswith("__") or not migration_file.endswith(".py"):
                 continue
             full_path = os.path.join(migrations_dir, migration_file)
             migration_file_list.append(full_path)

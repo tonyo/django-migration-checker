@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import sys
 import unittest
+
 try:
     from unittest.mock import patch
 except ImportError:
@@ -11,10 +12,9 @@ from django_migration_checker.cli.find_conflicts import create_parser
 
 
 class TestFindMigrationsCliChecker(unittest.TestCase):
-
     def setUp(self):
         self.parser = create_parser()
-        self.apps_dir_input = 'example_app_dir'
+        self.apps_dir_input = "example_app_dir"
         self.valid_parsed_args = self.parser.parse_args([self.apps_dir_input])
 
     def test_with_empty_args(self):
@@ -31,8 +31,8 @@ class TestFindMigrationsCliChecker(unittest.TestCase):
 
         assert args.apps_dirs == [self.apps_dir_input]
 
-    @patch('django_migration_checker.cli.find_conflicts.get_conflicts')
-    @patch('argparse.ArgumentParser.parse_args')
+    @patch("django_migration_checker.cli.find_conflicts.get_conflicts")
+    @patch("argparse.ArgumentParser.parse_args")
     def test_cli_passes_args(self, m_parse_args, m_get_conflicts):
         m_parse_args.return_value = self.valid_parsed_args
 
@@ -41,5 +41,5 @@ class TestFindMigrationsCliChecker(unittest.TestCase):
         m_get_conflicts.assert_called_with(self.apps_dir_input)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     sys.exit(unittest.main())

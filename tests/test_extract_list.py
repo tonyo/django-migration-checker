@@ -12,7 +12,7 @@ class TestExtractList(unittest.TestCase):
                 ('llamas', '0001_one'),
             ]
         """
-        assert [('llamas', '0001_one')] == extract_list('dependencies', content)
+        assert [("llamas", "0001_one")] == extract_list("dependencies", content)
 
     def test_basic_double_quote(self):
         content = """
@@ -20,13 +20,13 @@ class TestExtractList(unittest.TestCase):
                 ("llamas", "0001_one"),
             ]
         """
-        assert [('llamas', '0001_one')] == extract_list('dependencies', content)
+        assert [("llamas", "0001_one")] == extract_list("dependencies", content)
 
     def test_basic_compact_style(self):
         content = """
             dependencies=[('llamas','0001_one')]
         """
-        assert [('llamas', '0001_one')] == extract_list('dependencies', content)
+        assert [("llamas", "0001_one")] == extract_list("dependencies", content)
 
     def test_multi_dependencies_single_quote(self):
         content = """
@@ -37,10 +37,10 @@ class TestExtractList(unittest.TestCase):
             ]
         """
         assert [
-                   ('llamas', '0001_one'),
-                   ('llamas', '0002_two'),
-                   ('llamas', '0003_three'),
-               ] == extract_list('dependencies', content)
+            ("llamas", "0001_one"),
+            ("llamas", "0002_two"),
+            ("llamas", "0003_three"),
+        ] == extract_list("dependencies", content)
 
     def test_multi_dependencies_double_quote(self):
         content = """
@@ -51,11 +51,11 @@ class TestExtractList(unittest.TestCase):
             ]
         """
         assert [
-                   ('llamas', '0001_one'),
-                   ('llamas', '0002_two'),
-                   ('llamas', '0003_three'),
-               ] == extract_list('dependencies', content)
+            ("llamas", "0001_one"),
+            ("llamas", "0002_two"),
+            ("llamas", "0003_three"),
+        ] == extract_list("dependencies", content)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     sys.exit(unittest.main())

@@ -3,7 +3,7 @@ wheel>=0.37.0
 
 bumpversion==0.5.3
 watchdog==0.8.3
-flake8==2.6.0
+flake8==6.0.0
 coverage==4.1
 Sphinx==1.4.4
 pytest==7.0.1
@@ -16,3 +16,5 @@ more-itertools==5.0.0
 
 # Pin this so "python setup.py develop" doesn't fail on Python 3.6
 typing-extensions==4.1.1
+# Pin, otherwise "python setup.py test" fails on Python 3.6
+tomli==1.2.3
