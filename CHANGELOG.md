@@ -1,6 +1,10 @@
 # Changelog
 
 
+## [0.8.0] - 2023-01-05
+
+* Support multiple projects when in CLI mode ([#12](https://github.com/tonyo/django-migration-checker/pull/12))
+
 ## [0.7.1] - 2022-07-31
 
 * Fix error on double quote and multiple dependencies ([#11](https://github.com/tonyo/django-migration-checker/pull/11))
